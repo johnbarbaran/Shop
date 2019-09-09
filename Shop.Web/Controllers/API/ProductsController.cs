@@ -13,6 +13,7 @@
             this.productRepository = productRepository;
         }
 
+        // Lista de productos
         [HttpGet]
         public IActionResult GetProducts()
         {
