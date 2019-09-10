@@ -1,5 +1,6 @@
 ﻿namespace Shop.Web.Controllers.API
 {
+    using System.Linq;
     using Microsoft.AspNetCore.Mvc;
     using Data;
 
@@ -17,7 +18,8 @@
         [HttpGet]
         public IActionResult GetProducts()
         {
-            return Ok( this.productRepository.GetAll());
+            //return Ok( this.productRepository.GetAll());
+            return Ok(this.productRepository.GetAllWithUsers());
         }
 
     }
