@@ -24,6 +24,7 @@
 
         private async void LoadProducts()
         {
+            
             var response = await this.apiService.GetListAsync<Product>(                
                 "https://192.168.1.5:44370",
                 "/api",
