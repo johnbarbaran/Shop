@@ -16,7 +16,7 @@
         {
             if (instance == null)
             {
-                return instance;
+                return new MainViewModel();
             }
 
             return instance;            

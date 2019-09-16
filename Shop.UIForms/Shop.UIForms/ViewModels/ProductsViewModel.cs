@@ -6,29 +6,38 @@
     using System.Collections.ObjectModel;
     using Xamarin.Forms;
 
-    public class ProductsViewModel: BaseViewModel
+    public class ProductsViewModel : BaseViewModel
     {
         private readonly ApiService apiService;
         private ObservableCollection<Product> products;
+        private bool isRefreshing;
 
         public ObservableCollection<Product> Products {
-            get { return this.products; }
-            set { this.SetValue(ref this.products, value); }
+            get => this.products;
+            set => this.SetValue(ref this.products, value);
+        }
+
+        public bool IsRefreshing {
+            get => this.isRefreshing;
+            set => this.SetValue(ref this.isRefreshing, value);
         }
 
         public ProductsViewModel()
-        {
+        {            
             this.apiService = new ApiService();
             this.LoadProducts();
         }
 
         private async void LoadProducts()
         {
-            
-            var response = await this.apiService.GetListAsync<Product>(                
-                "https://192.168.1.5:44370",
+            this.IsRefreshing = true;
+
+            var response = await this.apiService.GetListAsync<Product>(
+                "http://192.168.1.5:5001",
                 "/api",
                 "/Products");
+            this.IsRefreshing = false;
+
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(

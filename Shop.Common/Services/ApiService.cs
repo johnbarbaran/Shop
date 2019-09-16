@@ -6,7 +6,7 @@
     using Models;
     using Newtonsoft.Json;
     using System.Threading.Tasks;
-
+    using RestSharp;
 
     public class ApiService
     {
@@ -18,6 +18,8 @@
                 {
                     BaseAddress = new Uri(urlBase)
                 };
+
+
                 var url = $"{servicePrefix}{controller}";
                 var response = await client.GetAsync(url);
                 var result = await response.Content.ReadAsStringAsync();
@@ -46,7 +48,8 @@
                     Message = ex.Message
                 };
             }
+
         }
-    }
+    }   
 
 }

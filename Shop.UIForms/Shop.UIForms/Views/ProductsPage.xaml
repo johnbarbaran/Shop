@@ -9,9 +9,10 @@
              Title="Products">
     <ContentPage.Content>
         <StackLayout
-            BindingContext="Binding Products"
+            BindingContext="{Binding Products}"
             Padding="8">
             <ListView
+                IsRefreshing="{Binding IsRefreshing}}"
                 HasUnevenRows="true"
                 ItemsSource="{Binding Products}">
                 <ListView.ItemTemplate>
@@ -41,7 +42,7 @@
                                     	TextColor="Navy">
                                     </Label>
                                     <Label
-                                    	Text="{Binding stock, StringFormat='Stock: {0:N2}'}"
+                                    	Text="{Binding Stock, StringFormat='Stock: {0:N2}'}"
                                     	TextColor="Black">
                                     </Label>
                                 </StackLayout>
