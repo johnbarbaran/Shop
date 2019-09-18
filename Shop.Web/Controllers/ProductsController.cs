@@ -11,8 +11,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Shop.Web.Models;
-
-    [Authorize]
+    
     public class ProductsController : Controller
     {
         private readonly IProductRepository productRepository;
@@ -24,7 +23,7 @@
             this.userHelper = userHelper;
         }
 
-        // GET: Products
+        // GET: Products        
         public IActionResult Index()
         {
             return View(this.productRepository.GetAll().OrderBy(p => p.Name));
@@ -48,6 +47,7 @@
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -109,6 +109,7 @@
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -196,6 +197,7 @@
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
